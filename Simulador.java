@@ -38,9 +38,7 @@ public class Simulador {
 			Casilla actual = abierta.poll();
 			cerrada.add(actual);
 			if (actual.equals(meta)) {
-				abierta = new ColaDeNodos(meta);
-				cerrada = new ArrayList<>();
-				abierta.add(actual);
+
 				if (!finWaypoints) {
 					if (!waypoints.isEmpty()) {
 						meta = waypoints.get(contadorWaypoints);
@@ -50,6 +48,9 @@ public class Simulador {
 						meta = new Casilla(filaMeta, columnaMeta, columnas, filas);
 						finWaypoints = true;
 					}
+					abierta = new ColaDeNodos(meta);
+					cerrada = new ArrayList<>();
+					abierta.add(actual);
 				} else {
 					VentanaSimulacion.pinta(actual.getRuta());
 					exito = true;
